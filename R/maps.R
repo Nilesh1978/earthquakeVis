@@ -1,4 +1,22 @@
 
+#' Leaflet map of earthquakes
+#'
+#' This function creates a \code{leaflet} map of selected earthquakes based on
+#' input NOAA earthquake cleaned data.
+#'
+#' @param data A data frame containing cleaned NOAA earthquake data
+#' @param annot_col A character. The name of the column in the data that should
+#' be used as descriptor.
+#'
+#' @return A leaflet map with earthquakes and annotations.
+#' @export
+#'
+#' @importFrom leaflet leaflet addTiles addCircleMarkers
+#'
+#' @examples
+#' \dontrun{
+#' eq_map(data, annot_col = "LOCATION_NAME")
+#' }
 eq_map <- function(data, annot_col) {
 
      m <- leaflet::leaflet() %>%
@@ -11,6 +29,25 @@ eq_map <- function(data, annot_col) {
 }
 
 
+#' Creates a label for leaflet map
+#'
+#' This function creates a label for the \code{leaflet} map based on location
+#' name, magnitude and casualties from NOAA earthquake data
+#'
+#' @param data A data frame containing cleaned NOAA earthquake data
+#'
+#' @return A character vector with labels
+#'
+#' @details The input \code{data.frame} needs to include columns LOCATION_NAME,
+#' EQ_PRIMARY and TOTAL_DEATHS with the earthquake location, magintude and
+#' total casualties respectively.
+#'
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' eq_create_label(data)
+#' }
 eq_create_label <- function(data) {
      popup_text <- with(data, {
           part1 <- ifelse(is.na(LOCATION_NAME), "",
