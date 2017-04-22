@@ -1,12 +1,20 @@
 Package: earthquakeVis
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Package for visualization of NOAA earthquakes
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Author: Zdenek Kabat [aut,cre]
+Maintainer: Zdenek Kabat <zdenek.kabat@gmail.com>
+Description: This package is suited for cleaning and visualization of NOAA
+     earthquake data. It is able to create earthquake timelines and uses leaflet
+     maps to show eq locations
+License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
+Imports: dplyr,
+     ggplot2,
+     leaflet
+Suggests: knitr,
+     rmarkdown,
+     testthat
+VignetteBuilder: knitr
