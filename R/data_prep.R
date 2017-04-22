@@ -65,7 +65,7 @@ eq_clean_data <- function(data) {
 #' }
 #'
 #' @importFrom dplyr %>% mutate
-#' @importFrom strigr str_replace str_trim str_to_title
+#' @importFrom stringr str_replace str_trim str_to_title
 eq_location_clean <- function(data) {
      data <- data %>%
           dplyr::mutate(LOCATION_NAME = LOCATION_NAME %>%

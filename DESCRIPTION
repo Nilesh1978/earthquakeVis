@@ -13,7 +13,10 @@ LazyData: true
 RoxygenNote: 6.0.1
 Imports: dplyr,
      ggplot2,
-     leaflet
+     leaflet,
+     lubridate,
+     scales,
+     stringr
 Suggests: knitr,
      rmarkdown,
      testthat

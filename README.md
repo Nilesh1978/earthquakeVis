@@ -1,6 +1,6 @@
 # earthquakeVis - NOAA earthquake visualization package
 
-This is an R package created for the purpose of visualizing NOAA earthquake data. In processes data from [NOAA database](https://www.ngdc.noaa.gov/nndc/struts/form?t=101650&s=1&d=1). 
+This is an R package created for the purpose of visualizing NOAA earthquake data. It processes data from [NOAA database](https://www.ngdc.noaa.gov/nndc/struts/form?t=101650&s=1&d=1). 
 
 ## Example
 
