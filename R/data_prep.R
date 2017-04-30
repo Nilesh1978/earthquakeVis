@@ -24,7 +24,6 @@
 #' @importFrom dplyr %>% mutate select
 #' @importFrom lubridate ymd
 #' @importFrom stringr str_pad
-#' @importFrom readr read_delim
 #'
 #' @export
 eq_clean_data <- function(data) {
