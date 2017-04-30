@@ -89,18 +89,16 @@ GeomTimeline <-
                     )
                )
                y_lines <- unique(coords$y)
-               lines <- lapply(y_lines,
-                               function(y) {
-                                    grid::linesGrob(
-                                         y = unit(c(y, y), "npc"),
-                                         gp = grid::gpar(col = "grey",
-                                                         lwd = .pt)
-                                    )
-                               })
 
-               all <- append(list(points), lines)
+               lines <- grid::polylineGrob(
+                    x = unit(rep(c(0, 1), each = length(y_lines)), "npc"),
+                    y = unit(c(y_lines, y_lines), "npc"),
+                    id = rep(seq_along(y_lines), 2),
+                    gp = grid::gpar(col = "grey",
+                                    lwd = .pt)
+               )
 
-               do.call(grid::gList, all)
+               gList(points, lines)
           }
      )
 
