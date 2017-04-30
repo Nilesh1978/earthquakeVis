@@ -1,5 +1,7 @@
 # earthquakeVis - NOAA earthquake visualization package
 
+[![Travis-CI Build Status](https://travis-ci.org/zkabat/earthquakeVis.svg?branch=master)](https://travis-ci.org/zkabat/earthquakeVis)
+
 This is an R package created for the purpose of visualizing NOAA earthquake data. It processes data from [NOAA database](https://www.ngdc.noaa.gov/nndc/struts/form?t=101650&s=1&d=1). 
 
 ## Example
