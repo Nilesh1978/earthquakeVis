@@ -98,7 +98,7 @@ GeomTimeline <-
                                     lwd = .pt)
                )
 
-               gList(points, lines)
+               grid::gList(points, lines)
           }
      )
 
@@ -202,34 +202,23 @@ GeomTimelineLabel <-
                n_grp <- length(unique(data$group))
                offset <- 0.2 / n_grp
 
-               lines <-
-                    lapply(1:nrow(data),
-                           function(i) {
-                                grid::linesGrob(
-                                     x = unit(c(coords$x[i], coords$x[i]),
-                                              "npc"),
-                                     y = unit(c(coords$y[i], coords$y[i] +
-                                                     offset),
-                                              "npc"),
-                                     gp = grid::gpar(
-                                          col = "grey"
-                                     )
-                                )
-                           })
+               lines <- grid::polylineGrob(
+                    x = unit(c(coords$x, coords$x), "npc"),
+                    y = unit(c(coords$y, coords$y + offset), "npc"),
+                    id = rep(1:dim(coords)[1], 2),
+                    gp = grid::gpar(
+                         col = "grey"
+                    )
+               )
 
-               names <-
-                    lapply(1:nrow(data),
-                           function(i) {
-                                grid::textGrob(
-                                     label = coords$label[i],
-                                     x = unit(coords$x[i], "npc"),
-                                     y = unit(coords$y[i] + offset, "npc"),
-                                     just = c("left", "bottom"),
-                                     rot = 45
-                                )
-                           })
+               names <- grid::textGrob(
+                    label = coords$label,
+                    x = unit(coords$x, "npc"),
+                    y = unit(coords$y + offset, "npc"),
+                    just = c("left", "bottom"),
+                    rot = 45
+               )
 
-               all <- append(lines, names)
-               do.call(grid::gList, all)
+               grid::gList(lines, names)
           }
      )
