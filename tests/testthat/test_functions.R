@@ -18,11 +18,11 @@ test_that("eq_clean_data returns numeric coordinates", {
 
 test_that("geom_timeline returns ggplot object", {
      g <- data %>% eq_clean_data() %>%
-          filter(COUNTRY %in% c("GREECE", "ITALY"), YEAR > 2000) %>%
-          ggplot(aes(x = DATE,
-                     y = COUNTRY,
-                     color = as.numeric(TOTAL_DEATHS),
-                     size = as.numeric(EQ_PRIMARY)
+          dplyr::filter(COUNTRY %in% c("GREECE", "ITALY"), YEAR > 2000) %>%
+          ggplot2::ggplot(ggplot2::aes(x = DATE,
+                                       y = COUNTRY,
+                                       color = as.numeric(TOTAL_DEATHS),
+                                       size = as.numeric(EQ_PRIMARY)
           )) +
           geom_timeline()
      expect_is(g, "ggplot")
@@ -30,11 +30,11 @@ test_that("geom_timeline returns ggplot object", {
 
 test_that("geom_timeline_label returns ggplot object", {
      g <- data %>% eq_clean_data() %>%
-          filter(COUNTRY %in% c("GREECE", "ITALY"), YEAR > 2000) %>%
-          ggplot(aes(x = DATE,
-                     y = COUNTRY,
-                     color = as.numeric(TOTAL_DEATHS),
-                     size = as.numeric(EQ_PRIMARY)
+          dplyr::filter(COUNTRY %in% c("GREECE", "ITALY"), YEAR > 2000) %>%
+          ggplot2::ggplot(ggplot2::aes(x = DATE,
+                                       y = COUNTRY,
+                                       color = as.numeric(TOTAL_DEATHS),
+                                       size = as.numeric(EQ_PRIMARY)
           )) +
           geom_timeline_label(aes(label = LOCATION_NAME))
      expect_is(g, "ggplot")

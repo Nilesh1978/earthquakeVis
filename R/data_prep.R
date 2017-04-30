@@ -24,22 +24,23 @@
 #' @importFrom dplyr %>% mutate select
 #' @importFrom lubridate ymd
 #' @importFrom stringr str_pad
+#' @importFrom readr read_delim
 #'
 #' @export
 eq_clean_data <- function(data) {
      data <- data %>%
-          dplyr::mutate(
-               year_fix = stringr::str_pad(as.character(abs(YEAR)),
-                                           width = 4, side = "left", pad = "0"),
-               date_paste = paste(year_fix, MONTH, DAY, sep = "-"),
-               DATE = lubridate::ymd(date_paste, truncated = 2)) %>%
-          dplyr::select(-year_fix, -date_paste)
+          dplyr::mutate_(
+               year_fix = ~stringr::str_pad(as.character(abs(YEAR)), width = 4,
+                                            side = "left", pad = "0"),
+               date_paste = ~paste(year_fix, MONTH, DAY, sep = "-"),
+               DATE = ~lubridate::ymd(date_paste, truncated = 2)) %>%
+          dplyr::select_(quote(-year_fix), quote(-date_paste))
 
      lubridate::year(data$DATE) <- data$YEAR
 
      data <- data %>%
-          dplyr::mutate(LATITUDE = as.numeric(LATITUDE),
-                        LONGITUDE = as.numeric(LONGITUDE))
+          dplyr::mutate_(LATITUDE = ~as.numeric(LATITUDE),
+                         LONGITUDE = ~as.numeric(LONGITUDE))
 
      data <- eq_location_clean(data)
 
@@ -68,9 +69,9 @@ eq_clean_data <- function(data) {
 #' @importFrom stringr str_replace str_trim str_to_title
 eq_location_clean <- function(data) {
      data <- data %>%
-          dplyr::mutate(LOCATION_NAME = LOCATION_NAME %>%
-                             stringr::str_replace(paste0(COUNTRY, ":"), "") %>%
-                             stringr::str_trim("both") %>%
-                             stringr::str_to_title())
+          dplyr::mutate_(LOCATION_NAME = ~LOCATION_NAME %>%
+                              stringr::str_replace(paste0(COUNTRY, ":"), "") %>%
+                              stringr::str_trim("both") %>%
+                              stringr::str_to_title())
      data
 }

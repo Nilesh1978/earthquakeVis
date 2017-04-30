@@ -6,8 +6,8 @@ Author: Zdenek Kabat [aut,cre]
 Maintainer: Zdenek Kabat <zdenek.kabat@gmail.com>
 Description: This package is suited for cleaning and visualization of NOAA
      earthquake data. It is able to create earthquake timelines and uses leaflet
-     maps to show eq locations
-License: GPL (>= 3)
+     maps to show eq locations.
+License: GPL (>= 3) | file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
