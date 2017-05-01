@@ -45,7 +45,7 @@ data %>%
   eq_map(annot_col = "popup_text")
 ```
 
-![](README-example-1.png)
+![](README-example-2.png)
 
 The `leaflet` map includes circles for individual earthquakes with location name, magnitude and number of casualties annotations.
 
