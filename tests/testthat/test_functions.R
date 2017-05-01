@@ -16,6 +16,10 @@ test_that("eq_clean_data returns numeric coordinates", {
      expect_is(eq_clean_data(data)$LONGITUDE, "numeric")
 })
 
+test_that("eq_location_clean returns a data frame", {
+     expect_is(eq_location_clean(data), "data.frame")
+})
+
 test_that("geom_timeline returns ggplot object", {
      g <- data %>% eq_clean_data() %>%
           dplyr::filter(COUNTRY %in% c("GREECE", "ITALY"), YEAR > 2000) %>%
