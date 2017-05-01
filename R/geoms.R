@@ -23,15 +23,7 @@
 #'               size = as.numeric(EQ_PRIMARY)
 #'    )) +
 #'    geom_timeline() +
-#'    theme(
-#'       plot.background = element_blank(),
-#'       panel.background = element_blank(),
-#'       legend.key = element_blank(),
-#'       axis.title.y = element_blank(),
-#'       axis.line.x = element_line(size = 1),
-#'       axis.ticks.y = element_blank(),
-#'       legend.position = "bottom"
-#'    ) +
+#'    theme_timeline() +
 #'    labs(size = "Richter scale value", color = "# deaths")
 #' }
 geom_timeline <- function(mapping = NULL, data = NULL, stat = "identity",
@@ -116,15 +108,7 @@ GeomTimeline <-
 #'    )) +
 #'    geom_timeline() +
 #'    geom_timeline_label(aes(label = LOCATION_NAME), n_max = 5) +
-#'    theme(
-#'       plot.background = element_blank(),
-#'       panel.background = element_blank(),
-#'       legend.key = element_blank(),
-#'       axis.title.y = element_blank(),
-#'       axis.line.x = element_line(size = 1),
-#'       axis.ticks.y = element_blank(),
-#'       legend.position = "bottom"
-#'    ) +
+#'    theme_timeline() +
 #'    labs(size = "Richter scale value", color = "# deaths")
 #' }
 geom_timeline_label <- function(mapping = NULL, data = NULL, stat = "identity",
@@ -191,3 +175,37 @@ GeomTimelineLabel <-
                grid::gList(lines, names)
           }
      )
+
+#' Theme for better timeline visualization in ggplot2
+#'
+#' @description  This is a simple theme that makes \code{\link{geom_timeline}}
+#' look better.
+#'
+#' @examples
+#' \dontrun{
+#' data %>% eq_clean_data() %>%
+#' filter(COUNTRY %in% c("GREECE", "ITALY"), YEAR > 2000) %>%
+#'    ggplot(aes(x = DATE,
+#'               y = COUNTRY,
+#'               color = as.numeric(TOTAL_DEATHS),
+#'               size = as.numeric(EQ_PRIMARY)
+#'    )) +
+#'    geom_timeline() +
+#'    theme_timeline()
+#' }
+#'
+#' @importFrom ggplot2 theme element_blank element_line
+#'
+#' @export
+#'
+theme_timeline <- function() {
+     ggplot2::theme(
+          plot.background = ggplot2::element_blank(),
+          panel.background = ggplot2::element_blank(),
+          legend.key = ggplot2::element_blank(),
+          axis.title.y = ggplot2::element_blank(),
+          axis.line.x = ggplot2::element_line(size = 1),
+          axis.ticks.y = ggplot2::element_blank(),
+          legend.position = "bottom"
+     )
+}

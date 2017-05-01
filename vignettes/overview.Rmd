@@ -20,11 +20,12 @@ This vignette gives a brief overview of the earthquakeVis R package created for 
 
 ## Package functions
 
-There are five exported functions available to users:
+There are six exported functions available to users:
 
 - `eq_clean_data()`
 - `geom_timeline()`
 - `geom_timeline_label()`
+- `theme_timeline()`
 - `eq_create_label()`
 - `eq_map()`
 
@@ -43,7 +44,7 @@ eq_clean_data(data)
 
 ## Visualize earthquake timeline
 
-The next two functions utilize `ggplot` package to visualize earthquake timeline. The basic `geom_timeline()` geom requires clean data from the previous paragraph. The required aesthetics is `x` with dates, optional are `y` for grouping by country, and `size` and `color` that can be use according to user needs. The `geom_timeline_label()` function requires additional `label` aesthetic for labeling. Here is an example:
+The next three functions utilize `ggplot2` package to visualize earthquake timeline. The basic `geom_timeline()` geom requires clean data from the previous paragraph. The required aesthetics is `x` with dates, optional are `y` for grouping by country, and `size` and `color` that can be use according to user needs. The `geom_timeline_label()` function requires additional `label` aesthetic for labeling. For better visualization of these two geoms, `theme_timeline()` theme was added. Here is an example:
 
 ```{r eq_timeline_example, fig.width = 7, fig.height = 4}
 data %>% eq_clean_data() %>%
@@ -55,15 +56,7 @@ data %>% eq_clean_data() %>%
      )) +
      geom_timeline() +
      geom_timeline_label(aes(label = LOCATION_NAME), n_max = 5) +
-     theme(
-          plot.background = element_blank(),
-          panel.background = element_blank(),
-          legend.key = element_blank(),
-          axis.title.y = element_blank(),
-          axis.line.x = element_line(size = 1),
-          axis.ticks.y = element_blank(),
-          legend.position = "bottom"
-     ) +
+     theme_timeline() +
      labs(size = "Richter scale value", color = "# deaths")
 ```
 

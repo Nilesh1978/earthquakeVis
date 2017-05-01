@@ -75,15 +75,7 @@ data \%>\% eq_clean_data() \%>\%
    )) +
    geom_timeline() +
    geom_timeline_label(aes(label = LOCATION_NAME), n_max = 5) +
-   theme(
-      plot.background = element_blank(),
-      panel.background = element_blank(),
-      legend.key = element_blank(),
-      axis.title.y = element_blank(),
-      axis.line.x = element_line(size = 1),
-      axis.ticks.y = element_blank(),
-      legend.position = "bottom"
-   ) +
+   theme_timeline() +
    labs(size = "Richter scale value", color = "# deaths")
 }
 }

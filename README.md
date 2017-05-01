@@ -4,12 +4,19 @@
 
 This is an R package created for the purpose of visualizing NOAA earthquake data. It processes data from [NOAA database](https://www.ngdc.noaa.gov/nndc/struts/form?t=101650&s=1&d=1). 
 
+## Description
+
+The package includes several exported functions to handle NOAA data. The provided data set includes data on earthquakes starting year 2150 B.C. and contains dates, locations, magnitudes, severity (casualties, injuries...) and other details. 
+
+This package handles basic data cleaning using function `eq_clean_data()` and then two types of visualizations. The first is a `ggplot2`-based earthquake timeline of selected earthquakes using `geom_timeline()` and `geom_timeline_label()` with optional usage of `theme_timeline()` function. The second visualization is based on `leaflet` package and shows the earthquakes with some basic parameters on a map.
+
 ## Example
 
 After downloading data from the NOAA database, the package is able to process and visualize them using the following example:
 
 ```r
-data <- readr::read_delim("earthquakes.tsv.gz", delim = "\t")
+filename <- system.file("extdata/earthquakes.tsv.gz", package = "earthquakeVis")
+data <- readr::read_delim(filename, delim = "\t")
 data %>% eq_clean_data() %>%
      filter(COUNTRY %in% c("GREECE", "ITALY"), YEAR > 2000) %>%
      ggplot(aes(x = DATE,
@@ -19,15 +26,7 @@ data %>% eq_clean_data() %>%
      )) +
      geom_timeline() +
      geom_timeline_label(aes(label = LOCATION_NAME), n_max = 5) +
-     theme(
-          plot.background = element_blank(),
-          panel.background = element_blank(),
-          legend.key = element_blank(),
-          axis.title.y = element_blank(),
-          axis.line.x = element_line(size = 1),
-          axis.ticks.y = element_blank(),
-          legend.position = "bottom"
-     ) +
+     theme_timeline() +
      labs(size = "Richter scale value", color = "# deaths")
 ```
 

@@ -40,6 +40,18 @@ test_that("geom_timeline_label returns ggplot object", {
      expect_is(g, "ggplot")
 })
 
+test_that("theme_timeline returns ggplot object", {
+     g <- data %>% eq_clean_data() %>%
+          dplyr::filter(COUNTRY %in% c("GREECE", "ITALY"), YEAR > 2000) %>%
+          ggplot2::ggplot(ggplot2::aes(x = DATE,
+                                       y = COUNTRY,
+                                       color = as.numeric(TOTAL_DEATHS),
+                                       size = as.numeric(EQ_PRIMARY)
+          )) +
+          theme_timeline()
+     expect_is(g, "ggplot")
+})
+
 test_that("eq_map returns leaflet object", {
      l <- data %>%
           eq_clean_data() %>%
