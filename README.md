@@ -27,8 +27,11 @@ data %>% eq_clean_data() %>%
      geom_timeline() +
      geom_timeline_label(aes(label = LOCATION_NAME), n_max = 5) +
      theme_timeline() +
-     labs(size = "Richter scale value", color = "# deaths")
+     labs(size = "Richter scale value", color = "# deaths") + 
+     scale_x_date(limits = c(lubridate::ymd("2000-01-01"), 
+                             lubridate::ymd("2020-01-01")))
 ```
+![](README-example-1.png)
 
 This creates a `ggplot2` object with earthquake timelines and labels grouped by country, colored by number of casualties and sized by magnitude. 
 
@@ -41,6 +44,8 @@ data %>%
   dplyr::mutate(popup_text = eq_create_label(.)) %>% 
   eq_map(annot_col = "popup_text")
 ```
+
+![](README-example-1.png)
 
 The `leaflet` map includes circles for individual earthquakes with location name, magnitude and number of casualties annotations.
 
